@@ -21,6 +21,8 @@ namespace Gouro.WebApp.MVC
             services.AddIdentityConfiguration();
 
             services.AddMvcConfiguration();
+
+            services.RegisterServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
