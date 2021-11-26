@@ -1,4 +1,7 @@
-﻿using Gouro.WebApp.MVC.Models;
+﻿using Gouro.WebApp.MVC.Extensions;
+using Gouro.WebApp.MVC.Models;
+using Microsoft.Extensions.Options;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -8,8 +11,9 @@ namespace Gouro.WebApp.MVC.Services
     {
         private readonly HttpClient _httpClient;
 
-        public AutenticacaoService(HttpClient httpClient)
+        public AutenticacaoService(HttpClient httpClient, IOptions<AppSettings> settings)
         {
+            httpClient.BaseAddress = new Uri(settings.Value.AutenticacaoUrl);
             _httpClient = httpClient;
         }
 
@@ -17,7 +21,7 @@ namespace Gouro.WebApp.MVC.Services
         {
             var loginContent = ObterConteudo(usuarioLogin);
 
-            var response = await _httpClient.PostAsync("https://localhost:44343/api/identidade/entrar", loginContent);
+            var response = await _httpClient.PostAsync("/api/identidade/entrar", loginContent);
 
             if (!TratarErrosResponse(response))
             {
@@ -35,7 +39,7 @@ namespace Gouro.WebApp.MVC.Services
         {
             var registroContent = ObterConteudo(usuarioRegistro);
 
-            var response = await _httpClient.PostAsync("https://localhost:44343/api/identidade/nova-conta", registroContent);
+            var response = await _httpClient.PostAsync("/api/identidade/nova-conta", registroContent);
 
             if (!TratarErrosResponse(response))
             {
