@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\building blocks\Gouro.Core\Gouro.Core.csproj" />
+    <ProjectReference Include="..\..\building blocks\Gouro.WebApi.Core\Gouro.WebApi.Core.csproj" />
   </ItemGroup>
 
 

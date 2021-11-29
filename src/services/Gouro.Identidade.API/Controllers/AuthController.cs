@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Gouro.Identidade.API.Extensions;
+using Gouro.WebApi.Core.Identidade;
 
 namespace Gouro.Identidade.API.Controllers
 {

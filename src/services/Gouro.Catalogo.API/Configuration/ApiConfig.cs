@@ -1,4 +1,5 @@
 ﻿using Gouro.Catalogo.API.Data;
+using Gouro.WebApi.Core.Identidade;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,7 @@ namespace Gouro.Catalogo.API.Configuration
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCors("Total");
+            app.UseAuthConfiguration();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -23,5 +23,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\building blocks\Gouro.WebApi.Core\Gouro.WebApi.Core.csproj" />
+  </ItemGroup>
+
 
 </Project>

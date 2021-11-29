@@ -1,4 +1,4 @@
-﻿namespace Gouro.Identidade.API.Extensions
+﻿namespace Gouro.WebApi.Core.Identidade
 {
     public class AppSettings
     {
