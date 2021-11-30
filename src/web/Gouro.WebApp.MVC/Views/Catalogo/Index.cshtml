@@ -8,11 +8,14 @@
 <section>
     <div>
         <div style="background-image: url(images/banners/Template.jpg); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover">
+            <div style="text-align: right; height: 300px; color: #e08039; padding: 100px 70px 0 0;">
+                <h1>Grupo Grão de Ouro</h1>
+            </div>
         </div>
         <div class="container" style=" padding-top: 20px">
             <div class="row">
                 @{
-                    foreach (var produto in Model.OrderBy(p=>p.Nome))
+                    foreach (var produto in Model.OrderBy(p => p.Nome))
                     {
                         <div class="col-md-3">
                             <div href="#" class="card card-product-grid">
@@ -25,7 +28,7 @@
                                     </a>
 
                                     <small class="card-text">
-                                        @this.MensagemEstoque(produto.QuantidadeEstoque)<br/><br/>
+                                        @this.MensagemEstoque(produto.QuantidadeEstoque)<br /><br />
                                         @produto.Descricao
                                     </small>
                                 </figcaption>
