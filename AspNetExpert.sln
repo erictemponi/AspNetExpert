@@ -29,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalogo", "Catalogo", "{D1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cliente", "Cliente", "{3A93C6D3-09CE-4B98-ABE8-5A9F16BFB9E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gouro.Cliente.API", "src\services\Gouro.Cliente.API\Gouro.Cliente.API.csproj", "{20E9333A-87E0-4F5B-8834-D11C2E2F9C9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gouro.Clientes.API", "src\services\Gouro.Cliente.API\Gouro.Clientes.API.csproj", "{20E9333A-87E0-4F5B-8834-D11C2E2F9C9F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pagamento", "Pagamento", "{D9811A6C-99AB-469C-90B0-FFD8101E08E6}"
 EndProject
@@ -45,7 +45,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gouro.Catalogo.API", "src\s
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{BB8F76CC-2F8C-4C21-A6B7-10120B0CD974}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouro.WebApi.Core", "src\building blocks\Gouro.WebApi.Core\Gouro.WebApi.Core.csproj", "{722BD503-92C3-4D1E-9D9D-D00EB2DE954F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gouro.WebApi.Core", "src\building blocks\Gouro.WebApi.Core\Gouro.WebApi.Core.csproj", "{722BD503-92C3-4D1E-9D9D-D00EB2DE954F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

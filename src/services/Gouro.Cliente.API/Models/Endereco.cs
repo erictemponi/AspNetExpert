@@ -1,7 +1,7 @@
 ﻿using Gouro.Core.DomainObjects;
 using System;
 
-namespace Gouro.Cliente.API.Models
+namespace Gouro.Clientes.API.Models
 {
     public class Endereco : Entity
     {
