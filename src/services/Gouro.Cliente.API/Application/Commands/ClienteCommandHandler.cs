@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using Gouro.Clientes.API.Application.Events;
 using Gouro.Clientes.API.Models;
 using Gouro.Core.Messages;
 using MediatR;
@@ -31,6 +32,8 @@ namespace Gouro.Clientes.API.Application.Commands
             }
 
             _clienteRepository.Adicionar(cliente);
+
+            cliente.AdicionarEvento(new ClienteRegistradoEvent(message.Id, message.Nome, message.Email, message.Cpf));
 
             return await PersistirDados(_clienteRepository.UnityOfWork);
         }

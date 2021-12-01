@@ -6,6 +6,7 @@ using Gouro.Core.Mediator;
 using MediatR;
 using Gouro.Clientes.API.Application.Commands;
 using FluentValidation.Results;
+using Gouro.Clientes.API.Application.Events;
 
 namespace Gouro.Clientes.API.Configuration
 {
@@ -15,6 +16,8 @@ namespace Gouro.Clientes.API.Configuration
         {
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IRequestHandler<RegistrarClienteCommand, ValidationResult>, ClienteCommandHandler>();
+
+            services.AddScoped<INotificationHandler<ClienteRegistradoEvent>, ClienteEventHandler>();
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<ClientesContext>();
