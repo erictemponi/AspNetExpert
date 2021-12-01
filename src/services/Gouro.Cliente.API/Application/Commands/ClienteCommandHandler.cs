@@ -9,19 +9,30 @@ namespace Gouro.Clientes.API.Application.Commands
 {
     public class ClienteCommandHandler : CommandHandler, IRequestHandler<RegistrarClienteCommand, ValidationResult>
     {
+        private readonly IClienteRepository _clienteRepository;
+
+        public ClienteCommandHandler(IClienteRepository clienteRepository)
+        {
+            _clienteRepository = clienteRepository;
+        }
+
         public async Task<ValidationResult> Handle(RegistrarClienteCommand message, CancellationToken cancellationToken)
         {
             if (!message.IsValid()) return message.ValidationResult;
 
             var cliente = new Cliente(message.Id, message.Nome, message.Email, message.Cpf);
 
-            // Validações de negócio
+            var clienteExistente = await _clienteRepository.ObterPorCpf(cliente.Cpf.Numero);
 
+            if (clienteExistente != null)
+            {
+                AdicionarErro("Este CPF já está em uso");
+                return ValidationResult;
+            }
 
-            // Persistência no banco
+            _clienteRepository.Adicionar(cliente);
 
-
-            return message.ValidationResult;
+            return await PersistirDados(_clienteRepository.UnityOfWork);
         }
     }
 }
