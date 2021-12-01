@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Gouro.WebApi.Core.Identidade;
+using Gouro.WebApi.Core.Controllers;
 
 namespace Gouro.Identidade.API.Controllers
 {

@@ -1,4 +1,5 @@
 ﻿using Gouro.Catalogo.API.Models;
+using Gouro.WebApi.Core.Controllers;
 using Gouro.WebApi.Core.Identidade;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace Gouro.Catalogo.API.Controllers
 {
-    [ApiController]
     [Authorize]
-    public class CatalogoController : Controller
+    public class CatalogoController : MainController
     {
         private readonly IProdutoRepository _produtoRepository;
 
