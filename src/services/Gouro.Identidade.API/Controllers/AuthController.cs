@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Gouro.WebApi.Core.Identidade;
 using Gouro.WebApi.Core.Controllers;
 using Gouro.Core.Messages.Integration;
-using EasyNetQ;
+using Gouro.MessageBus;
 
 namespace Gouro.Identidade.API.Controllers
 {
@@ -25,13 +25,14 @@ namespace Gouro.Identidade.API.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
 
-        private IBus _bus;
+        private readonly IMessageBus _bus;
 
-        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings)
+        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings, IMessageBus bus)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value;
+            _bus = bus;
         }
 
         [HttpPost("nova-conta")]
@@ -50,8 +51,13 @@ namespace Gouro.Identidade.API.Controllers
 
             if (result.Succeeded)
             {
-                // Integração
-                var sucesso = await RegistrarCliente(usuarioRegistro);
+                var clienteResult = await RegistrarCliente(usuarioRegistro);
+
+                if (!clienteResult.ValidationResult.IsValid)
+                {
+                    await _userManager.DeleteAsync(user);
+                    return CustomResponse(clienteResult.ValidationResult);
+                }
 
                 return CustomResponse(await GerarJwt(usuarioRegistro.Email) );
             }
@@ -62,19 +68,6 @@ namespace Gouro.Identidade.API.Controllers
             }
 
             return CustomResponse();
-        }
-
-        private async Task<ResponseMessage> RegistrarCliente(UsuarioRegistro usuarioRegistro)
-        {
-            var usuario = await _userManager.FindByEmailAsync(usuarioRegistro.Email);
-
-            var usuarioRegistrado = new UsuarioRegistradoIntegrationEvent(Guid.Parse(usuario.Id), usuarioRegistro.Nome, usuarioRegistro.Email, usuarioRegistro.Cpf);
-
-            _bus = RabbitHutch.CreateBus("host=localhost:5672");
-
-            var sucesso = await _bus.Rpc.RequestAsync<UsuarioRegistradoIntegrationEvent, ResponseMessage>(usuarioRegistrado);
-
-            return sucesso;
         }
 
         [HttpPost("entrar")]
@@ -163,5 +156,22 @@ namespace Gouro.Identidade.API.Controllers
 
         private static long ToUnixEpochDate(DateTime date)
             => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
+
+        private async Task<ResponseMessage> RegistrarCliente(UsuarioRegistro usuarioRegistro)
+        {
+            var usuario = await _userManager.FindByEmailAsync(usuarioRegistro.Email);
+
+            var usuarioRegistrado = new UsuarioRegistradoIntegrationEvent(Guid.Parse(usuario.Id), usuarioRegistro.Nome, usuarioRegistro.Email, usuarioRegistro.Cpf);
+
+            try
+            {
+                return await _bus.RequestAsync<UsuarioRegistradoIntegrationEvent, ResponseMessage>(usuarioRegistrado);
+            }
+            catch
+            {
+                await _userManager.DeleteAsync(usuario);
+                throw;
+            }
+        }
     }
 }
