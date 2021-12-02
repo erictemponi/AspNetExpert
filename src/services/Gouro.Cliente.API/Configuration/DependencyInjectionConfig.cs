@@ -7,6 +7,7 @@ using MediatR;
 using Gouro.Clientes.API.Application.Commands;
 using FluentValidation.Results;
 using Gouro.Clientes.API.Application.Events;
+using Gouro.Clientes.API.Services;
 
 namespace Gouro.Clientes.API.Configuration
 {
@@ -21,6 +22,8 @@ namespace Gouro.Clientes.API.Configuration
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<ClientesContext>();
+
+            services.AddHostedService<RegistroClienteIntegrationHandler>();
         }
     }
 }
