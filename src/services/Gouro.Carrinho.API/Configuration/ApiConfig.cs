@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Gouro.WebApi.Core.Identidade;
+using Gouro.Carrinho.API.Data;
 
 namespace Gouro.Carrinho.API.Configuration
 {
@@ -12,6 +13,9 @@ namespace Gouro.Carrinho.API.Configuration
     {
         public static void AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddDbContext<CarrinhoContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllers();
 
             services.AddCors(options =>
