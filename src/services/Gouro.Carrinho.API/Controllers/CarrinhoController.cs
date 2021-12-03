@@ -1,5 +1,6 @@
 ﻿using Gouro.Carrinho.API.Models;
 using Gouro.WebApi.Core.Controllers;
+using Gouro.WebApi.Core.Usuario;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,13 @@ namespace Gouro.Carrinho.API.Controllers
     [Authorize]
     public class CarrinhoController : MainController
     {
+        private readonly IAspNetUser _user;
+
+        public CarrinhoController(IAspNetUser user)
+        {
+            _user = user;
+        }
+
         [HttpGet("carrinho")]
         public async Task<CarrinhoCliente> ObterCarrinho()
         {
