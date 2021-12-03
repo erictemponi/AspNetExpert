@@ -1,4 +1,5 @@
-﻿using Gouro.WebApp.MVC.Extensions;
+﻿using Gouro.WebApi.Core.Usuario;
+using Gouro.WebApp.MVC.Extensions;
 using Gouro.WebApp.MVC.Services;
 using Gouro.WebApp.MVC.Services.Handlers;
 using Microsoft.AspNetCore.Http;
@@ -30,7 +31,7 @@ namespace Gouro.WebApp.MVC.Configuration
                     .AddTransientHttpErrorPolicy(p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IUser, AspNetUser>();
+            services.AddScoped<IAspNetUser, AspNetUser>();
 
             #region Refit
 
