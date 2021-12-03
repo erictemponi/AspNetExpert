@@ -40,10 +40,51 @@ namespace Gouro.Carrinho.API.Controllers
 
             if (!OperacaoValida()) return CustomResponse();
 
-            var result = await _context.SaveChangesAsync();
-            if (result <= 0) AdicionarErroProcessamento("Não foi possível persistir os dados no banco");
+            await PersistirDados();
 
             return CustomResponse();
+        }
+
+        [HttpPut("carrinho/{produtoId}")]
+        public async Task<IActionResult> AtualizarItemCarrinho(Guid produtoId, CarrinhoItem item)
+        {
+            var carrinho = await ObterCarrinhoCliente();
+            var itemCarrinho = await ObterItemCarrinhoValidado(produtoId, carrinho, item);
+            if (itemCarrinho == null) return CustomResponse();
+
+            carrinho.AtualizarUnidades(itemCarrinho, item.Quantidade);
+
+            _context.CarrinhoItens.Update(itemCarrinho);
+            _context.CarrinhoCliente.Update(carrinho);
+
+            await PersistirDados();
+
+            return CustomResponse();
+        }
+
+        [HttpDelete("carrinho/{produtoId}")]
+        public async Task<IActionResult> RemoverItemCarrinho(Guid produtoId)
+        {
+            var carrinho = await ObterCarrinhoCliente();
+
+            var itemCarrinho = await ObterItemCarrinhoValidado(produtoId, carrinho);
+            if (itemCarrinho == null) return CustomResponse();
+
+            carrinho.RemoverItem(itemCarrinho);
+
+            _context.CarrinhoItens.Remove(itemCarrinho);
+            _context.CarrinhoCliente.Update(carrinho);
+
+            await PersistirDados();
+
+            return CustomResponse();
+        }
+
+        private async Task<CarrinhoCliente> ObterCarrinhoCliente()
+        {
+            return await _context.CarrinhoCliente
+                .Include(c => c.Itens)
+                .FirstOrDefaultAsync(c => c.ClienteId == _user.ObterUserId());
         }
 
         private void ManipularNovoCarrinho(CarrinhoItem item)
@@ -58,7 +99,7 @@ namespace Gouro.Carrinho.API.Controllers
         {
             var produtoItemExistente = carrinho.CarrinhoItemExistente(item);
 
-            carrinho.AdicionarItem(item);   
+            carrinho.AdicionarItem(item);
 
             if (produtoItemExistente)
             {
@@ -72,23 +113,36 @@ namespace Gouro.Carrinho.API.Controllers
             _context.CarrinhoCliente.Update(carrinho);
         }
 
-        [HttpPut("carrinho/{produtoId}")]
-        public async Task<IActionResult> AtualizarItemCarrinho(Guid produtoId, CarrinhoItem item)
+        private async Task<CarrinhoItem> ObterItemCarrinhoValidado(Guid produtoId, CarrinhoCliente carrinho, CarrinhoItem item = null)
         {
-            return CustomResponse();
+            if (item != null && produtoId != item.ProdutoId)
+            {
+                AdicionarErroProcessamento("O item não corresponde ao informado");
+                return null;
+            }
+
+            if (carrinho == null)
+            {
+                AdicionarErroProcessamento("Carrinho não encontrado");
+                return null;
+            }
+
+            var itemCarrinho = await _context.CarrinhoItens
+                .FirstOrDefaultAsync(i => i.CarrinhoId == carrinho.Id && i.ProdutoId == produtoId);
+
+            if (itemCarrinho == null || !carrinho.CarrinhoItemExistente(itemCarrinho))
+            {
+                AdicionarErroProcessamento("O item não está no carrinho");
+                return null;
+            }
+
+            return itemCarrinho;
         }
 
-        [HttpDelete("carrinho/{produtoId}")]
-        public async Task<IActionResult> RemoverItemCarrinho(Guid produtoId)
+        private async Task PersistirDados()
         {
-            return CustomResponse();
-        }
-
-        private async Task<CarrinhoCliente> ObterCarrinhoCliente()
-        {
-            return await _context.CarrinhoCliente
-                .Include(c => c.Itens)
-                .FirstOrDefaultAsync(c => c.ClienteId == _user.ObterUserId());
+            var result = await _context.SaveChangesAsync();
+            if (result <= 0) AdicionarErroProcessamento("Não foi possível persistir os dados no banco");
         }
     }
 }
