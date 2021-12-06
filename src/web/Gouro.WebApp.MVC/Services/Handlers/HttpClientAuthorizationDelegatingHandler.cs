@@ -1,5 +1,4 @@
 ﻿using Gouro.WebApi.Core.Usuario;
-using Gouro.WebApp.MVC.Extensions;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
