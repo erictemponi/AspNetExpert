@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using System;
+using System.Text.Json.Serialization;
 
 namespace Gouro.Carrinho.API.Models
 {
@@ -13,6 +14,7 @@ namespace Gouro.Carrinho.API.Models
         public decimal Valor { get; set; }
         public string Imagem { get; set; }
 
+        [JsonIgnore]
         public CarrinhoCliente CarrinhoCliente { get; set; }
 
         public CarrinhoItem()
@@ -62,7 +64,7 @@ namespace Gouro.Carrinho.API.Models
                     .WithMessage(item => $"A quantidade mínima de {item.Nome} é 1");
 
                 RuleFor(c => c.Quantidade)
-                    .LessThan(CarrinhoCliente.MAX_QUANTIDADE_ITEM)
+                    .LessThanOrEqualTo(CarrinhoCliente.MAX_QUANTIDADE_ITEM)
                     .WithMessage(item => $"A quantidade máxima de {item.Nome} é {CarrinhoCliente.MAX_QUANTIDADE_ITEM}");
 
                 RuleFor(c => c.Valor)
