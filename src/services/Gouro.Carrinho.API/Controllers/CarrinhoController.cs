@@ -1,4 +1,4 @@
-﻿using Gouro.Carrinho.API.Data;
+﻿    using Gouro.Carrinho.API.Data;
 using Gouro.Carrinho.API.Models;
 using Gouro.WebApi.Core.Controllers;
 using Gouro.WebApi.Core.Usuario;
@@ -39,7 +39,6 @@ namespace Gouro.Carrinho.API.Controllers
             else
                 ManipularCarrinhoExistente(carrinho, item);
 
-            ValidarCarrinho(carrinho);
             if (!OperacaoValida()) return CustomResponse();
 
             await PersistirDados();
@@ -100,6 +99,7 @@ namespace Gouro.Carrinho.API.Controllers
             var carrinho = new CarrinhoCliente(_user.ObterUserId());
             carrinho.AdicionarItem(item);
 
+            ValidarCarrinho(carrinho);
             _context.CarrinhoCliente.Add(carrinho);
         }
 
@@ -108,6 +108,7 @@ namespace Gouro.Carrinho.API.Controllers
             var produtoItemExistente = carrinho.CarrinhoItemExistente(item);
 
             carrinho.AdicionarItem(item);
+            ValidarCarrinho(carrinho);
 
             if (produtoItemExistente)
             {
