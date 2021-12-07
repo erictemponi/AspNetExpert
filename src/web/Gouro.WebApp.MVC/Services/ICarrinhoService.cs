@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Gouro.Core.Communication;
 using Gouro.WebApp.MVC.Models;
 
 namespace Gouro.WebApp.MVC.Services

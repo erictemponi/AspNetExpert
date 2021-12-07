@@ -1,5 +1,5 @@
-﻿using Gouro.WebApp.MVC.Extensions;
-using Gouro.WebApp.MVC.Models;
+﻿using Gouro.Core.Communication;
+using Gouro.WebApp.MVC.Extensions;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;

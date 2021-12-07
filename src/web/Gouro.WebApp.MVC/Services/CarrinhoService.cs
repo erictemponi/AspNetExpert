@@ -1,4 +1,5 @@
-﻿using Gouro.WebApp.MVC.Extensions;
+﻿using Gouro.Core.Communication;
+using Gouro.WebApp.MVC.Extensions;
 using Gouro.WebApp.MVC.Models;
 using Microsoft.Extensions.Options;
 using System;
