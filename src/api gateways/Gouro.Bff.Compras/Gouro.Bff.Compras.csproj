@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>b3b86677-ee63-4a46-9623-40ada16c09c4</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\building blocks\Gouro.Core\Gouro.Core.csproj" />
+    <ProjectReference Include="..\..\building blocks\Gouro.MessageBus\Gouro.MessageBus.csproj" />
+    <ProjectReference Include="..\..\building blocks\Gouro.WebApi.Core\Gouro.WebApi.Core.csproj" />
+  </ItemGroup>
+
+
+</Project>
