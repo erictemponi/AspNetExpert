@@ -17,6 +17,7 @@
     <ProjectReference Include="..\..\building blocks\Gouro.Core\Gouro.Core.csproj" />
     <ProjectReference Include="..\..\building blocks\Gouro.MessageBus\Gouro.MessageBus.csproj" />
     <ProjectReference Include="..\..\building blocks\Gouro.WebApi.Core\Gouro.WebApi.Core.csproj" />
+    <ProjectReference Include="..\..\web\Gouro.WebApp.MVC\Gouro.WebApp.MVC.csproj" />
   </ItemGroup>
 
 
