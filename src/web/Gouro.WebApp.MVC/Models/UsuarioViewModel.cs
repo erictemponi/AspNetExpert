@@ -1,4 +1,5 @@
-﻿using Gouro.WebApp.MVC.Extensions;
+﻿using Gouro.Core.Communication;
+using Gouro.WebApp.MVC.Extensions;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;

@@ -1,4 +1,4 @@
-﻿using Gouro.WebApp.MVC.Models;
+﻿using Gouro.Core.Communication;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
