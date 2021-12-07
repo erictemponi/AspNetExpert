@@ -8,6 +8,14 @@ using System.Threading.Tasks;
 
 namespace Gouro.WebApp.MVC.Services
 {
+    public interface ICarrinhoService
+    {
+        Task<CarrinhoViewModel> ObterCarrinho();
+        Task<ResponseResult> AdicionarItemCarrinho(ItemProdutoViewModel produto);
+        Task<ResponseResult> AtualizarItemCarrinho(Guid produtoId, ItemProdutoViewModel produto);
+        Task<ResponseResult> RemoverItemCarrinho(Guid produtoId);
+    }
+
     public class CarrinhoService : Service, ICarrinhoService
     {
         private readonly HttpClient _httpClient;
