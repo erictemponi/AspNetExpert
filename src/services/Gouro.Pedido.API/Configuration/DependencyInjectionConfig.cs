@@ -1,4 +1,5 @@
 ﻿using Gouro.Core.Mediator;
+using Gouro.Pedidos.API.Application.Queries;
 using Gouro.Pedidos.Domain.Vouchers;
 using Gouro.Pedidos.Infra.Data;
 using Gouro.Pedidos.Infra.Data.Repository;
@@ -18,6 +19,7 @@ namespace Gouro.Pedidos.API.Configuration
 
             // Application
             services.AddScoped<IMediatorHandler, MediatorHandler>();
+            services.AddScoped<IVoucherQueries, VoucherQueries>();
 
             // Data
             services.AddScoped<IVoucherRepository, VoucherRepository>();
