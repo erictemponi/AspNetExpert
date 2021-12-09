@@ -1,12 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Gouro.Core.Data;
-using Gouro.Core.Mediator;
 using FluentValidation.Results;
+using Gouro.Core.Data;
+using Gouro.Core.DomainObjects;
+using Gouro.Core.Mediator;
 using Gouro.Core.Messages;
 using Gouro.Pedidos.Domain.Vouchers;
-using Gouro.Core.DomainObjects;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gouro.Pedidos.Infra.Data
 {
@@ -14,10 +15,12 @@ namespace Gouro.Pedidos.Infra.Data
     {
         private readonly IMediatorHandler _mediatorHandler;
 
-        public PedidosContext(DbContextOptions<PedidosContext> options, IMediatorHandler mediatorHandler) : base(options)
+        public PedidosContext(DbContextOptions<PedidosContext> options, IMediatorHandler mediatorHandler)
+            : base(options)
         {
             _mediatorHandler = mediatorHandler;
         }
+
 
         public DbSet<Voucher> Vouchers { get; set; }
 
@@ -36,7 +39,6 @@ namespace Gouro.Pedidos.Infra.Data
         public async Task<bool> Commit()
         {
             var sucesso = await base.SaveChangesAsync() > 0;
-
             if (sucesso) await _mediatorHandler.PublicarEventos(this);
 
             return sucesso;
