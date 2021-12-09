@@ -1,6 +1,5 @@
 ﻿using Gouro.Catalogo.API.Models;
 using Gouro.WebApi.Core.Controllers;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -27,6 +26,12 @@ namespace Gouro.Catalogo.API.Controllers
         public async Task<Produto> ProdutoDetalhe(Guid id)
         {
             return await _produtoRepository.ObterPorId(id);
+        }
+
+        [HttpGet("catalogo/produtos/lista/{ids}")]
+        public async Task<IEnumerable<Produto>> ObterProdutosPorId(string ids)
+        {
+            return await _produtoRepository.ObterProdutosPorId(ids);
         }
     }
 }
