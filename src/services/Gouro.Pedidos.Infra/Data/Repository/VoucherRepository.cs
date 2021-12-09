@@ -1,5 +1,7 @@
 ﻿using Gouro.Core.Data;
 using Gouro.Pedidos.Domain.Vouchers;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Gouro.Pedidos.Infra.Data.Repository
 {
@@ -13,6 +15,11 @@ namespace Gouro.Pedidos.Infra.Data.Repository
         }
 
         public IUnityOfWork UnityOfWork => _context;
+
+        public async Task<Voucher> ObterVoucherPorCodigo(string codigo)
+        {
+            return await _context.Vouchers.FirstOrDefaultAsync(p => p.Codigo == codigo);
+        }
 
         public void Dispose()
         {
