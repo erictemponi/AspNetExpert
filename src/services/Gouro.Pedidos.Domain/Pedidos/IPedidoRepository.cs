@@ -1,6 +1,7 @@
 ﻿using Gouro.Core.Data;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Threading.Tasks;
 
 namespace Gouro.Pedidos.Domain.Pedidos
@@ -14,6 +15,8 @@ namespace Gouro.Pedidos.Domain.Pedidos
         void Adicionar(Pedido pedido);
 
         void Atualizar(Pedido pedido);
+
+        DbConnection ObterConexao();
 
         // Pedido Item
         Task<PedidoItem> ObterItemPorId(Guid id);
