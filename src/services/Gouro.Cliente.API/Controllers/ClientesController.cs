@@ -1,27 +1,39 @@
 ﻿using Gouro.Clientes.API.Application.Commands;
+using Gouro.Clientes.API.Models;
 using Gouro.Core.Mediator;
 using Gouro.WebApi.Core.Controllers;
+using Gouro.WebApi.Core.Usuario;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace Gouro.Clientes.API.Controllers
 {
     public class ClientesController : MainController
     {
-        private readonly IMediatorHandler _mediatorHandler;
+        private readonly IClienteRepository _clienteRepository;
+        private readonly IMediatorHandler _mediator;
+        private readonly IAspNetUser _user;
 
-        public ClientesController(IMediatorHandler mediatorHandler)
+        public ClientesController(IClienteRepository clienteRepository, IMediatorHandler mediator, IAspNetUser user)
         {
-            _mediatorHandler = mediatorHandler;
+            _clienteRepository = clienteRepository;
+            _mediator = mediator;
+            _user = user;
         }
 
-        [HttpGet("clientes")]
-        public async Task<IActionResult> Index()
+        [HttpGet("cliente/endereco")]
+        public async Task<IActionResult> ObterEndereco()
         {
-            var resultado = await _mediatorHandler.EnviarComando(new RegistrarClienteCommand(Guid.NewGuid(), "Eric", "eric@eric.com", "93676369629"));
+            var endereco = await _clienteRepository.ObterEnderecoPorId(_user.ObterUserId());
 
-            return CustomResponse(resultado);
+            return endereco == null ? NotFound() : CustomResponse(endereco);
+        }
+
+        [HttpPost("cliente/endereco")]
+        public async Task<IActionResult> AdicionarEndereco(AdicionarEnderecoCommand endereco)
+        {
+            endereco.ClienteId = _user.ObterUserId();
+            return CustomResponse(await _mediator.EnviarComando(endereco));
         }
     }
 }

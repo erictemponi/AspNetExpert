@@ -7,6 +7,8 @@ using MediatR;
 using Gouro.Clientes.API.Application.Commands;
 using FluentValidation.Results;
 using Gouro.Clientes.API.Application.Events;
+using Microsoft.AspNetCore.Http;
+using Gouro.WebApi.Core.Usuario;
 
 namespace Gouro.Clientes.API.Configuration
 {
@@ -14,8 +16,13 @@ namespace Gouro.Clientes.API.Configuration
     {
         public static void RegisterServices(this IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IAspNetUser, AspNetUser>();
+
             services.AddScoped<IMediatorHandler, MediatorHandler>();
+
             services.AddScoped<IRequestHandler<RegistrarClienteCommand, ValidationResult>, ClienteCommandHandler>();
+            services.AddScoped<IRequestHandler<AdicionarEnderecoCommand, ValidationResult>, ClienteCommandHandler>();
 
             services.AddScoped<INotificationHandler<ClienteRegistradoEvent>, ClienteEventHandler>();
 
