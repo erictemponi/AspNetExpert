@@ -1,7 +1,6 @@
 ﻿using Gouro.WebApp.MVC.Extensions;
 using Gouro.WebApp.MVC.Models;
 using Microsoft.Extensions.Options;
-using Refit;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -14,16 +13,6 @@ namespace Gouro.WebApp.MVC.Services
         Task<IEnumerable<ProdutoViewModel>> ObterTodos();
         Task<ProdutoViewModel> ObterPorId(Guid id);
     }
-
-    public interface ICatalogoServiceRefit
-    {
-        [Get("/catalogo/produtos/")]
-        Task<IEnumerable<ProdutoViewModel>> ObterTodos();
-
-        [Get("/catalogo/produtos/{id}")]
-        Task<ProdutoViewModel> ObterPorId(Guid id);
-    }
-
     public class CatalogoService : Service, ICatalogoService
     {
         private readonly HttpClient _httpClient;
@@ -31,8 +20,10 @@ namespace Gouro.WebApp.MVC.Services
         public CatalogoService(HttpClient httpClient, IOptions<AppSettings> settings)
         {
             httpClient.BaseAddress = new Uri(settings.Value.CatalogoUrl);
+
             _httpClient = httpClient;
         }
+
         public async Task<ProdutoViewModel> ObterPorId(Guid id)
         {
             var response = await _httpClient.GetAsync($"/catalogo/produtos/{id}");
@@ -48,7 +39,7 @@ namespace Gouro.WebApp.MVC.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse< IEnumerable<ProdutoViewModel>>(response);
+            return await DesserializarObjetoResponse<IEnumerable<ProdutoViewModel>>(response);
         }
     }
 }

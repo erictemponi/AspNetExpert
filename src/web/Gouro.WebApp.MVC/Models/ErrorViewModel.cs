@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Gouro.WebApp.MVC.Models
 {
     public class ErrorViewModel

@@ -22,6 +22,7 @@ namespace Gouro.WebApp.MVC.Services
         public AutenticacaoService(HttpClient httpClient, IOptions<AppSettings> settings)
         {
             httpClient.BaseAddress = new Uri(settings.Value.AutenticacaoUrl);
+
             _httpClient = httpClient;
         }
 
@@ -29,7 +30,7 @@ namespace Gouro.WebApp.MVC.Services
         {
             var loginContent = ObterConteudo(usuarioLogin);
 
-            var response = await _httpClient.PostAsync("/api/identidade/entrar", loginContent);
+            var response = await _httpClient.PostAsync("/api/identidade/autenticar", loginContent);
 
             if (!TratarErrosResponse(response))
             {
@@ -40,7 +41,6 @@ namespace Gouro.WebApp.MVC.Services
             }
 
             return await DesserializarObjetoResponse<UsuarioRespostaLogin>(response);
-
         }
 
         public async Task<UsuarioRespostaLogin> Registro(UsuarioRegistro usuarioRegistro)

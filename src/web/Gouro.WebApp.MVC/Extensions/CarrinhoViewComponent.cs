@@ -6,16 +6,16 @@ namespace Gouro.WebApp.MVC.Extensions
 {
     public class CarrinhoViewComponent : ViewComponent
     {
-        private readonly IComprasBffService _carrinhoService;
+        private readonly IComprasBffService _comprasBffService;
 
-        public CarrinhoViewComponent(IComprasBffService carrinhoService)
+        public CarrinhoViewComponent(IComprasBffService comprasBffService)
         {
-            _carrinhoService = carrinhoService;
+            _comprasBffService = comprasBffService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View(await _carrinhoService.ObterQuantidadeCarrinho());
+            return View(await _comprasBffService.ObterQuantidadeCarrinho());
         }
     }
 }
