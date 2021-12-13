@@ -9,7 +9,7 @@ namespace Gouro.Identidade.API.Configuration
     {
         public static void AddMessageBusConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddMessageBus(configuration.GetMessaQueueConnection("MessageBus"));
+            services.AddMessageBus(configuration.GetMessageQueueConnection("MessageBus"));
         }
     }
 }

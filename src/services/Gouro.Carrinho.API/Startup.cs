@@ -37,6 +37,8 @@ namespace Gouro.Carrinho.API
             services.AddSwaggerConfiguration();
 
             services.RegisterServices();
+
+            services.AddMessageBusConfiguration(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
