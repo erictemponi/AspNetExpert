@@ -30,7 +30,7 @@ namespace Gouro.WebApp.MVC.Services
         {
             var loginContent = ObterConteudo(usuarioLogin);
 
-            var response = await _httpClient.PostAsync("/api/identidade/autenticar", loginContent);
+            var response = await _httpClient.PostAsync("/api/identidade/entrar", loginContent);
 
             if (!TratarErrosResponse(response))
             {
