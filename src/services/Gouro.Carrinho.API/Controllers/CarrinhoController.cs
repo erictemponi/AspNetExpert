@@ -1,4 +1,4 @@
-﻿    using Gouro.Carrinho.API.Data;
+﻿using Gouro.Carrinho.API.Data;
 using Gouro.Carrinho.API.Models;
 using Gouro.WebApi.Core.Controllers;
 using Gouro.WebApi.Core.Usuario;
