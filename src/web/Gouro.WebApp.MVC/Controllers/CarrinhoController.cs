@@ -13,9 +13,9 @@ namespace Gouro.WebApp.MVC.Controllers
     {
         private readonly IComprasBffService _comprasBffService;
 
-        public CarrinhoController(IComprasBffService carrinhoService)
+        public CarrinhoController(IComprasBffService comprasBffService)
         {
-            _comprasBffService = carrinhoService;
+            _comprasBffService = comprasBffService;
         }
 
         [Route("carrinho")]
@@ -60,7 +60,6 @@ namespace Gouro.WebApp.MVC.Controllers
 
         [HttpPost]
         [Route("carrinho/aplicar-voucher")]
-
         public async Task<IActionResult> AplicarVoucher(string voucherCodigo)
         {
             var resposta = await _comprasBffService.AplicarVoucherCarrinho(voucherCodigo);

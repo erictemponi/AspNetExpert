@@ -44,7 +44,7 @@ namespace Gouro.Bff.Compras.Controllers
         {
             var produto = await _catalogoService.ObterPorId(itemProduto.ProdutoId);
 
-            await ValidarItemCarrinho(produto, itemProduto.Quantidade);
+            await ValidarItemCarrinho(produto, itemProduto.Quantidade, true);
             if (!OperacaoValida()) return CustomResponse();
 
             itemProduto.Nome = produto.Nome;
@@ -78,7 +78,7 @@ namespace Gouro.Bff.Compras.Controllers
 
             if (produto == null)
             {
-                AdicionarErroProcessamento("Produto inexistente");
+                AdicionarErroProcessamento("Produto inexistente!");
                 return CustomResponse();
             }
 
@@ -94,7 +94,7 @@ namespace Gouro.Bff.Compras.Controllers
             var voucher = await _pedidoService.ObterVoucherPorCodigo(voucherCodigo);
             if (voucher is null)
             {
-                AdicionarErroProcessamento("Voucher inválido ou não encontrado!");
+                AdicionarErroProcessamento("Cupom inválido ou não encontrado!");
                 return CustomResponse();
             }
 
