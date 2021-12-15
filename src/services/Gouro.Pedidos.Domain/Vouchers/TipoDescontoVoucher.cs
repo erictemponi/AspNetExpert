@@ -1,11 +1,8 @@
 ﻿namespace Gouro.Pedidos.Domain.Vouchers
 {
-    public partial class Voucher
+    public enum TipoDescontoVoucher
     {
-        public enum TipoDescontoVoucher
-        {
-            Porcentagem = 0,
-            Valor = 1
-        }
+        Porcentagem = 0,
+        Valor = 1
     }
 }

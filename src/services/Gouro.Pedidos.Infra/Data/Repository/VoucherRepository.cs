@@ -14,7 +14,7 @@ namespace Gouro.Pedidos.Infra.Data.Repository
             _context = context;
         }
 
-        public IUnityOfWork UnityOfWork => _context;
+        public IUnitOfWork UnitOfWork => _context;
 
         public async Task<Voucher> ObterVoucherPorCodigo(string codigo)
         {

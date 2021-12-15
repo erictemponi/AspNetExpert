@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Net;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Gouro.Pedidos.API.Application.DTO;
+using Gouro.Pedidos.API.Application.Queries;
 using Gouro.WebApi.Core.Controllers;
 using Gouro.WebApi.Core.Usuario;
 using Gouro.Pedidos.Infra.Data;
-using Gouro.Pedidos.API.Application.Queries;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using Gouro.Pedidos.API.Application.DTO;
-using System.Net;
 
 namespace Gouro.Pedidos.API.Controllers
 {

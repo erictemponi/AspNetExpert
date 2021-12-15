@@ -18,7 +18,7 @@ namespace Gouro.Pedidos.Infra.Data.Repository
             _context = context;
         }
 
-        public IUnityOfWork UnityOfWork => _context;
+        public IUnitOfWork UnitOfWork => _context;
 
         public DbConnection ObterConexao() => _context.Database.GetDbConnection();
 

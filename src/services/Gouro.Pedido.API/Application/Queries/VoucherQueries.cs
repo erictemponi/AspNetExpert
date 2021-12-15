@@ -31,7 +31,7 @@ namespace Gouro.Pedidos.API.Application.Queries
                 Codigo = voucher.Codigo,
                 TipoDesconto = (int)voucher.TipoDesconto,
                 Percentual = voucher.Percentual,
-                ValorDesconto = voucher.ValorDesconto,
+                ValorDesconto = voucher.ValorDesconto
             };
         }
     }

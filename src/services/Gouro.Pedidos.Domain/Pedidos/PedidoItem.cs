@@ -12,6 +12,7 @@ namespace Gouro.Pedidos.Domain.Pedidos
         public decimal ValorUnitario { get; private set; }
         public string ProdutoImagem { get; set; }
 
+        // Relação do EF
         public Pedido Pedido { get; set; }
 
         public PedidoItem(Guid produtoId, string produtoNome, int quantidade, decimal valorUnitario, string produtoImagem = null)
@@ -23,6 +24,7 @@ namespace Gouro.Pedidos.Domain.Pedidos
             ProdutoImagem = produtoImagem;
         }
 
+        // Construtor para o EF
         protected PedidoItem() { }
 
         internal decimal CalcularValor()

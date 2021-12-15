@@ -51,7 +51,7 @@ namespace Gouro.Pedidos.API.Application.Commands
             _pedidoRepository.Adicionar(pedido);
 
             // Persistir dados de pedido e voucher
-            return await PersistirDados(_pedidoRepository.UnityOfWork);
+            return await PersistirDados(_pedidoRepository.UnitOfWork);
         }
 
         private Pedido MapearPedido(AdicionarPedidoCommand message)

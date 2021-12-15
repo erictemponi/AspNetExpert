@@ -4,7 +4,7 @@ using System;
 
 namespace Gouro.Pedidos.Domain.Vouchers
 {
-    public partial class Voucher : Entity, IAggregateRoot
+    public class Voucher : Entity, IAggregateRoot
     {
         public string Codigo { get; private set; }
         public decimal? Percentual { get; private set; }
@@ -21,7 +21,8 @@ namespace Gouro.Pedidos.Domain.Vouchers
         {
             return new VoucherAtivoSpecification()
                 .And(new VoucherDataSpecification())
-                .And(new VoucherQuantidadeSpecification()).IsSatisfiedBy(this);
+                .And(new VoucherQuantidadeSpecification())
+                .IsSatisfiedBy(this);
         }
 
         public void MarcarComoUtilizado()
@@ -29,6 +30,7 @@ namespace Gouro.Pedidos.Domain.Vouchers
             Ativo = false;
             Utilizado = true;
             Quantidade = 0;
+            DataUtilizacao = DateTime.Now;
         }
 
         public void DebitarQuantidade()

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Gouro.Pedidos.Infra.Data
 {
-    public class PedidosContext : DbContext, IUnityOfWork
+    public class PedidosContext : DbContext, IUnitOfWork
     {
         private readonly IMediatorHandler _mediatorHandler;
 
