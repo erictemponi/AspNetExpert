@@ -17,7 +17,7 @@ namespace Gouro.Catalogo.API.Data.Respository
             _context = context;
         }
 
-        public IUnityOfWork UnityOfWork => _context;
+        public IUnitOfWork UnitOfWork => _context;
 
         public async Task<Produto> ObterPorId(Guid id)
         {
