@@ -15,12 +15,11 @@ namespace Gouro.Carrinho.API.Services
         private readonly IMessageBus _bus;
         private readonly IServiceProvider _serviceProvider;
 
-        public CarrinhoIntegrationHandler(IMessageBus bus, IServiceProvider serviceProvider)
+        public CarrinhoIntegrationHandler(IServiceProvider serviceProvider, IMessageBus bus)
         {
-            _bus = bus;
             _serviceProvider = serviceProvider;
+            _bus = bus;
         }
-
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             SetSubscribers();
@@ -34,7 +33,6 @@ namespace Gouro.Carrinho.API.Services
 
         private async Task ApagarCarrinho(PedidoRealizadoIntegrationEvent message)
         {
-            await _bus.PublishAsync(message);
             using var scope = _serviceProvider.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<CarrinhoContext>();
 

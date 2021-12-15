@@ -6,21 +6,22 @@ namespace Gouro.Carrinho.API.Models
 {
     public class CarrinhoItem
     {
+        public CarrinhoItem()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public Guid Id { get; set; }
         public Guid ProdutoId { get; set; }
-        public Guid CarrinhoId { get; set; }
         public string Nome { get; set; }
         public int Quantidade { get; set; }
         public decimal Valor { get; set; }
         public string Imagem { get; set; }
 
+        public Guid CarrinhoId { get; set; }
+
         [JsonIgnore]
         public CarrinhoCliente CarrinhoCliente { get; set; }
-
-        public CarrinhoItem()
-        {
-            Id = Guid.NewGuid();
-        }
 
         internal void AssociarCarrinho(Guid carrinhoId)
         {
@@ -61,15 +62,15 @@ namespace Gouro.Carrinho.API.Models
 
                 RuleFor(c => c.Quantidade)
                     .GreaterThan(0)
-                    .WithMessage(item => $"A quantidade mínima de {item.Nome} é 1");
+                    .WithMessage(item => $"A quantidade miníma para o {item.Nome} é 1");
 
                 RuleFor(c => c.Quantidade)
                     .LessThanOrEqualTo(CarrinhoCliente.MAX_QUANTIDADE_ITEM)
-                    .WithMessage(item => $"A quantidade máxima de {item.Nome} é {CarrinhoCliente.MAX_QUANTIDADE_ITEM}");
+                    .WithMessage(item => $"A quantidade máxima do {item.Nome} é {CarrinhoCliente.MAX_QUANTIDADE_ITEM}");
 
                 RuleFor(c => c.Valor)
                     .GreaterThan(0)
-                    .WithMessage(item => $"O valor de {item.Nome} precia ser maior que 0");
+                    .WithMessage(item => $"O valor do {item.Nome} precisa ser maior que 0");
             }
         }
     }
