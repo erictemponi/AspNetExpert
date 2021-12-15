@@ -33,7 +33,7 @@ namespace Gouro.Bff.Compras.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<CarrinhoDTO>(response);
+            return await DeserializarObjetoResponse<CarrinhoDTO>(response);
         }
 
         public async Task<ResponseResult> AdicionarItemCarrinho(ItemCarrinhoDTO produto)
@@ -42,7 +42,7 @@ namespace Gouro.Bff.Compras.Services
 
             var response = await _httpClient.PostAsync("/carrinho/", itemContent);
 
-            if (!TratarErrosResponse(response)) return await DesserializarObjetoResponse<ResponseResult>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
             return RetornoOk();
         }
@@ -53,7 +53,7 @@ namespace Gouro.Bff.Compras.Services
 
             var response = await _httpClient.PutAsync($"/carrinho/{carrinho.ProdutoId}", itemContent);
 
-            if (!TratarErrosResponse(response)) return await DesserializarObjetoResponse<ResponseResult>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
             return RetornoOk();
         }
@@ -62,7 +62,7 @@ namespace Gouro.Bff.Compras.Services
         {
             var response = await _httpClient.DeleteAsync($"/carrinho/{produtoId}");
 
-            if (!TratarErrosResponse(response)) return await DesserializarObjetoResponse<ResponseResult>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
             return RetornoOk();
         }
@@ -73,7 +73,7 @@ namespace Gouro.Bff.Compras.Services
 
             var response = await _httpClient.PostAsync("/carrinho/aplicar-voucher/", itemContent);
 
-            if (!TratarErrosResponse(response)) return await DesserializarObjetoResponse<ResponseResult>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
             return RetornoOk();
         }

@@ -31,7 +31,7 @@ namespace Gouro.Bff.Compras.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<EnderecoDTO>(response);
+            return await DeserializarObjetoResponse<EnderecoDTO>(response);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Gouro.Bff.Compras.Services
 
             var response = await _httpClient.PostAsync("/pedido/", pedidoContent);
 
-            if (!TratarErrosResponse(response)) return await DesserializarObjetoResponse<ResponseResult>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
             return RetornoOk();
         }
@@ -48,7 +48,7 @@ namespace Gouro.Bff.Compras.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<PedidoDTO>(response);
+            return await DeserializarObjetoResponse<PedidoDTO>(response);
         }
 
         public async Task<IEnumerable<PedidoDTO>> ObterListaPorClienteId()
@@ -59,7 +59,7 @@ namespace Gouro.Bff.Compras.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<IEnumerable<PedidoDTO>>(response);
+            return await DeserializarObjetoResponse<IEnumerable<PedidoDTO>>(response);
         }
 
         public async Task<VoucherDTO> ObterVoucherPorCodigo(string codigo)
@@ -70,7 +70,7 @@ namespace Gouro.Bff.Compras.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<VoucherDTO>(response);
+            return await DeserializarObjetoResponse<VoucherDTO>(response);
         }
     }
 }

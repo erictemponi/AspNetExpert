@@ -30,7 +30,7 @@ namespace Gouro.Bff.Compras.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<ItemProdutoDTO>(response);
+            return await DeserializarObjetoResponse<ItemProdutoDTO>(response);
         }
 
         public async Task<IEnumerable<ItemProdutoDTO>> ObterItens(IEnumerable<Guid> ids)
@@ -41,7 +41,7 @@ namespace Gouro.Bff.Compras.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<IEnumerable<ItemProdutoDTO>>(response);
+            return await DeserializarObjetoResponse<IEnumerable<ItemProdutoDTO>>(response);
         }
     }
 }
