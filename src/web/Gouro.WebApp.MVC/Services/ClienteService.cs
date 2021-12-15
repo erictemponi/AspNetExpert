@@ -33,7 +33,7 @@ namespace Gouro.WebApp.MVC.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<EnderecoViewModel>(response);
+            return await DeserializarObjetoResponse<EnderecoViewModel>(response);
         }
 
         public async Task<ResponseResult> AdicionarEndereco(EnderecoViewModel endereco)
@@ -42,7 +42,7 @@ namespace Gouro.WebApp.MVC.Services
 
             var response = await _httpClient.PostAsync("/cliente/endereco/", enderecoContent);
 
-            if (!TratarErrosResponse(response)) return await DesserializarObjetoResponse<ResponseResult>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
             return RetornoOk();
         }

@@ -36,11 +36,11 @@ namespace Gouro.WebApp.MVC.Services
             {
                 return new UsuarioRespostaLogin
                 {
-                    ResponseResult = await DesserializarObjetoResponse<ResponseResult>(response)
+                    ResponseResult = await DeserializarObjetoResponse<ResponseResult>(response)
                 };
             }
 
-            return await DesserializarObjetoResponse<UsuarioRespostaLogin>(response);
+            return await DeserializarObjetoResponse<UsuarioRespostaLogin>(response);
         }
 
         public async Task<UsuarioRespostaLogin> Registro(UsuarioRegistro usuarioRegistro)
@@ -53,11 +53,11 @@ namespace Gouro.WebApp.MVC.Services
             {
                 return new UsuarioRespostaLogin
                 {
-                    ResponseResult = await DesserializarObjetoResponse<ResponseResult>(response)
+                    ResponseResult = await DeserializarObjetoResponse<ResponseResult>(response)
                 };
             }
 
-            return await DesserializarObjetoResponse<UsuarioRespostaLogin>(response);
+            return await DeserializarObjetoResponse<UsuarioRespostaLogin>(response);
         }
     }
 }

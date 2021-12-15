@@ -30,7 +30,7 @@ namespace Gouro.WebApp.MVC.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<ProdutoViewModel>(response);
+            return await DeserializarObjetoResponse<ProdutoViewModel>(response);
         }
 
         public async Task<IEnumerable<ProdutoViewModel>> ObterTodos()
@@ -39,7 +39,7 @@ namespace Gouro.WebApp.MVC.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<IEnumerable<ProdutoViewModel>>(response);
+            return await DeserializarObjetoResponse<IEnumerable<ProdutoViewModel>>(response);
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gouro.WebApp.MVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : MainController
     {
         [Route("sistema-indisponivel")]
         public IActionResult SistemaIndisponivel()

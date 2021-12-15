@@ -44,7 +44,7 @@ namespace Gouro.WebApp.MVC.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<CarrinhoViewModel>(response);
+            return await DeserializarObjetoResponse<CarrinhoViewModel>(response);
         }
         public async Task<int> ObterQuantidadeCarrinho()
         {
@@ -52,7 +52,7 @@ namespace Gouro.WebApp.MVC.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<int>(response);
+            return await DeserializarObjetoResponse<int>(response);
         }
         public async Task<ResponseResult> AdicionarItemCarrinho(ItemCarrinhoViewModel carrinho)
         {
@@ -60,7 +60,7 @@ namespace Gouro.WebApp.MVC.Services
 
             var response = await _httpClient.PostAsync("/compras/carrinho/items/", itemContent);
 
-            if (!TratarErrosResponse(response)) return await DesserializarObjetoResponse<ResponseResult>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
             return RetornoOk();
         }
@@ -70,7 +70,7 @@ namespace Gouro.WebApp.MVC.Services
 
             var response = await _httpClient.PutAsync($"/compras/carrinho/items/{produtoId}", itemContent);
 
-            if (!TratarErrosResponse(response)) return await DesserializarObjetoResponse<ResponseResult>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
             return RetornoOk();
         }
@@ -78,7 +78,7 @@ namespace Gouro.WebApp.MVC.Services
         {
             var response = await _httpClient.DeleteAsync($"/compras/carrinho/items/{produtoId}");
 
-            if (!TratarErrosResponse(response)) return await DesserializarObjetoResponse<ResponseResult>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
             return RetornoOk();
         }
@@ -88,7 +88,7 @@ namespace Gouro.WebApp.MVC.Services
 
             var response = await _httpClient.PostAsync("/compras/carrinho/aplicar-voucher/", itemContent);
 
-            if (!TratarErrosResponse(response)) return await DesserializarObjetoResponse<ResponseResult>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
             return RetornoOk();
         }
@@ -103,7 +103,7 @@ namespace Gouro.WebApp.MVC.Services
 
             var response = await _httpClient.PostAsync("/compras/pedido/", pedidoContent);
 
-            if (!TratarErrosResponse(response)) return await DesserializarObjetoResponse<ResponseResult>(response);
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
             return RetornoOk();
         }
@@ -114,7 +114,7 @@ namespace Gouro.WebApp.MVC.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<PedidoViewModel>(response);
+            return await DeserializarObjetoResponse<PedidoViewModel>(response);
         }
 
         public async Task<IEnumerable<PedidoViewModel>> ObterListaPorClienteId()
@@ -123,7 +123,7 @@ namespace Gouro.WebApp.MVC.Services
 
             TratarErrosResponse(response);
 
-            return await DesserializarObjetoResponse<IEnumerable<PedidoViewModel>>(response);
+            return await DeserializarObjetoResponse<IEnumerable<PedidoViewModel>>(response);
         }
 
         public PedidoTransacaoViewModel MapearParaPedido(CarrinhoViewModel carrinho, EnderecoViewModel endereco)
