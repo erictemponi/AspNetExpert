@@ -20,7 +20,6 @@ namespace Gouro.Identidade.API.Controllers
     [Route("api/identidade")]
     public class AuthController : MainController
     {
-
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
@@ -59,7 +58,7 @@ namespace Gouro.Identidade.API.Controllers
                     return CustomResponse(clienteResult.ValidationResult);
                 }
 
-                return CustomResponse(await GerarJwt(usuarioRegistro.Email) );
+                return CustomResponse(await GerarJwt(usuarioRegistro.Email));
             }
 
             foreach (var error in result.Errors)
