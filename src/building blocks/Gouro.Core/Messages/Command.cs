@@ -9,7 +9,7 @@ namespace Gouro.Core.Messages
         public DateTime Timestamp { get; private set; }
         public ValidationResult ValidationResult { get; set; }
 
-        public Command()
+        protected Command()
         {
             Timestamp = DateTime.Now;
         }
