@@ -14,8 +14,8 @@ namespace Gouro.Clientes.API.Models
         public string Estado { get; private set; }
         public Guid ClienteId { get; private set; }
 
-        // Relação do EF
-        public Cliente Cliente { get; private set; }
+        // Relação do EF com Cliente
+        public Cliente Cliente { get; protected set; }
 
         public Endereco(string logradouro, string numero, string complemento, string bairro, string cep, string cidade, string estado, Guid clienteId)
         {
@@ -28,5 +28,8 @@ namespace Gouro.Clientes.API.Models
             Estado = estado;
             ClienteId = clienteId;
         }
+
+        // Relação do EF com Endereco
+        protected Endereco() { }
     }
 }

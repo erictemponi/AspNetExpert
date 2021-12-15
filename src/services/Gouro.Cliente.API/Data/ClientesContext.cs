@@ -10,7 +10,7 @@ using Gouro.Core.Messages;
 
 namespace Gouro.Clientes.API.Data
 {
-    public sealed class ClientesContext : DbContext, IUnityOfWork
+    public sealed class ClientesContext : DbContext, IUnitOfWork
     {
         private readonly IMediatorHandler _mediatorHandler;
 
