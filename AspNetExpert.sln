@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1C778190-C43B-4571-B013-3C4689EF3369}"
 EndProject
@@ -35,7 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pagamento", "Pagamento", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pedido", "Pedido", "{7CFE44B6-226C-4B40-B0F4-874AA460B307}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gouro.Pagamento.API", "src\services\Gouro.Pagamento.API\Gouro.Pagamento.API.csproj", "{A5ECBB55-5678-4F4E-B0EA-69ABB12CC3E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gouro.Pagamentos.API", "src\services\Gouro.Pagamento.API\Gouro.Pagamentos.API.csproj", "{A5ECBB55-5678-4F4E-B0EA-69ABB12CC3E0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gouro.Pedidos.API", "src\services\Gouro.Pedido.API\Gouro.Pedidos.API.csproj", "{F9558BE6-54AB-45CE-9B8E-DD4084D23CC2}"
 EndProject
@@ -57,9 +57,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compras", "Compras", "{A7BB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gouro.Bff.Compras", "src\api gateways\Gouro.Bff.Compras\Gouro.Bff.Compras.csproj", "{ABFA8B60-532D-4135-AA94-A1A709189198}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouro.Pedidos.Domain", "src\services\Gouro.Pedidos.Domain\Gouro.Pedidos.Domain.csproj", "{A2F0E5F8-52E4-409C-ADD5-FD1089206DAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gouro.Pedidos.Domain", "src\services\Gouro.Pedidos.Domain\Gouro.Pedidos.Domain.csproj", "{A2F0E5F8-52E4-409C-ADD5-FD1089206DAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouro.Pedidos.Infra", "src\services\Gouro.Pedidos.Infra\Gouro.Pedidos.Infra.csproj", "{FFE161FB-DC0D-49D6-99EE-5F0104CA0EE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gouro.Pedidos.Infra", "src\services\Gouro.Pedidos.Infra\Gouro.Pedidos.Infra.csproj", "{FFE161FB-DC0D-49D6-99EE-5F0104CA0EE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouro.Pagamentos.GouroPag", "src\services\Gouro.Pagamentos.GouroPag\Gouro.Pagamentos.GouroPag.csproj", "{FB0206EE-AB04-4284-81A9-298367A19509}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +121,10 @@ Global
 		{FFE161FB-DC0D-49D6-99EE-5F0104CA0EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFE161FB-DC0D-49D6-99EE-5F0104CA0EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFE161FB-DC0D-49D6-99EE-5F0104CA0EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB0206EE-AB04-4284-81A9-298367A19509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB0206EE-AB04-4284-81A9-298367A19509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB0206EE-AB04-4284-81A9-298367A19509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB0206EE-AB04-4284-81A9-298367A19509}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,6 +158,7 @@ Global
 		{ABFA8B60-532D-4135-AA94-A1A709189198} = {A7BB9AF8-CBFB-4278-96B1-AD202DD1E7C9}
 		{A2F0E5F8-52E4-409C-ADD5-FD1089206DAD} = {7CFE44B6-226C-4B40-B0F4-874AA460B307}
 		{FFE161FB-DC0D-49D6-99EE-5F0104CA0EE2} = {7CFE44B6-226C-4B40-B0F4-874AA460B307}
+		{FB0206EE-AB04-4284-81A9-298367A19509} = {D9811A6C-99AB-469C-90B0-FFD8101E08E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11562474-92FA-4E0A-A028-708D01E0EDBF}
