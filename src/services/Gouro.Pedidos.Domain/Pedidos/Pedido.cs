@@ -1,9 +1,8 @@
-﻿using Gouro.Core.DomainObjects;
-using Gouro.Pedidos.Domain.Vouchers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using static Gouro.Pedidos.Domain.Vouchers.Voucher;
+using Gouro.Core.DomainObjects;
+using Gouro.Pedidos.Domain.Vouchers;
 
 namespace Gouro.Pedidos.Domain.Pedidos
 {
@@ -37,12 +36,21 @@ namespace Gouro.Pedidos.Domain.Pedidos
 
         public Endereco Endereco { get; private set; }
 
-        // EF Rel.
+        // Relação do EF
         public Voucher Voucher { get; private set; }
 
         public void AutorizarPedido()
         {
             PedidoStatus = PedidoStatus.Autorizado;
+        }
+        public void CancelarPedido()
+        {
+            PedidoStatus = PedidoStatus.Cancelado;
+        }
+
+        public void FinalizarPedido()
+        {
+            PedidoStatus = PedidoStatus.Pago;
         }
 
         public void AtribuirVoucher(Voucher voucher)
