@@ -5,22 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 using Gouro.Pedidos.API.Application.DTO;
 using Gouro.Pedidos.API.Application.Queries;
 using Gouro.WebApi.Core.Controllers;
-using Gouro.WebApi.Core.Usuario;
-using Gouro.Pedidos.Infra.Data;
 
 namespace Gouro.Pedidos.API.Controllers
 {
     [Authorize]
     public class VoucherController : MainController
     {
-        private readonly IAspNetUser _user;
-        private readonly PedidosContext _context;
         private readonly IVoucherQueries _voucherQueries;
 
-        public VoucherController(IAspNetUser user, PedidosContext context, IVoucherQueries voucherQueries)
+        public VoucherController(IVoucherQueries voucherQueries)
         {
-            _user = user;
-            _context = context;
             _voucherQueries = voucherQueries;
         }
 
