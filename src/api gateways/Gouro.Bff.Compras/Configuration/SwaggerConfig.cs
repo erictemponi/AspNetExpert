@@ -11,7 +11,7 @@ namespace Gouro.Bff.Compras.Configuration
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc("v1", new OpenApiInfo()
                 {
                     Title = "Grupo Grão de Ouro - BFF API Gateway",
                     Description = "BFF API Gateway",

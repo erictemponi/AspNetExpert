@@ -11,10 +11,13 @@ namespace Gouro.WebApi.Core.Controllers
     public abstract class MainController : Controller
     {
         protected ICollection<string> Erros = new List<string>();
+
         protected ActionResult CustomResponse(object result = null)
         {
             if (OperacaoValida())
+            {
                 return Ok(result);
+            }
 
             return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
             {
@@ -55,7 +58,9 @@ namespace Gouro.WebApi.Core.Controllers
             if (resposta == null || !resposta.Errors.Mensagens.Any()) return false;
 
             foreach (var mensagem in resposta.Errors.Mensagens)
+            {
                 AdicionarErroProcessamento(mensagem);
+            }
 
             return true;
         }
