@@ -20,7 +20,7 @@ namespace Gouro.Clientes.API.Application.Commands
             Cpf = cpf;
         }
 
-        public override bool IsValid()
+        public override bool EhValido()
         {
             ValidationResult = new RegistrarClienteValidation().Validate(this);
             return ValidationResult.IsValid;

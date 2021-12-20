@@ -1,6 +1,5 @@
 ﻿using Gouro.Identidade.API.Data;
 using Gouro.Identidade.API.Extensions;
-using Gouro.WebApi.Core.Identidade;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,9 +24,6 @@ namespace Gouro.Identidade.API.Configuration
                 .AddErrorDescriber<IdentityMensagensPortugues>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
-            // Configuração JWT
-            services.AddJwtConfiguration(configuration);
 
             return services;
         }

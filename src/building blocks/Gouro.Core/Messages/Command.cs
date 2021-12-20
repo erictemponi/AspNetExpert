@@ -14,7 +14,7 @@ namespace Gouro.Core.Messages
             Timestamp = DateTime.Now;
         }
 
-        public virtual bool IsValid()
+        public virtual bool EhValido()
         {
             throw new NotImplementedException();
         }

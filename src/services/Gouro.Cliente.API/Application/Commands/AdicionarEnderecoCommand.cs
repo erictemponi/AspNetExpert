@@ -33,7 +33,7 @@ namespace Gouro.Clientes.API.Application.Commands
             Estado = estado;
         }
 
-        public override bool IsValid()
+        public override bool EhValido()
         {
             ValidationResult = new EnderecoValidation().Validate(this);
             return ValidationResult.IsValid;

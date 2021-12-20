@@ -30,7 +30,7 @@ namespace Gouro.Pedidos.API.Application.Commands
         public async Task<ValidationResult> Handle(AdicionarPedidoCommand message, CancellationToken cancellationToken)
         {
             // Validação do comando
-            if (!message.IsValid()) return message.ValidationResult;
+            if (!message.EhValido()) return message.ValidationResult;
 
             // Mapear Pedido
             var pedido = MapearPedido(message);

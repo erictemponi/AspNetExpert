@@ -19,7 +19,7 @@ namespace Gouro.Clientes.API.Application.Commands
 
         public async Task<ValidationResult> Handle(RegistrarClienteCommand message, CancellationToken cancellationToken)
         {
-            if (!message.IsValid()) return message.ValidationResult;
+            if (!message.EhValido()) return message.ValidationResult;
 
             var cliente = new Cliente(message.Id, message.Nome, message.Email, message.Cpf);
 
@@ -40,7 +40,7 @@ namespace Gouro.Clientes.API.Application.Commands
 
         public async Task<ValidationResult> Handle(AdicionarEnderecoCommand message, CancellationToken cancellationToken)
         {
-            if (!message.IsValid()) return message.ValidationResult;
+            if (!message.EhValido()) return message.ValidationResult;
 
             var endereco = new Endereco(message.Logradouro, message.Numero, message.Complemento, message.Bairro, message.Cep, message.Cidade, message.Estado, message.ClienteId);
             _clienteRepository.AdicionarEndereco(endereco);
