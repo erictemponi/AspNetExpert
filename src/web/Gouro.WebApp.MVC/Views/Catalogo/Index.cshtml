@@ -1,5 +1,5 @@
 ﻿@using Gouro.WebApp.MVC.Extensions
-@model IEnumerable<Gouro.WebApp.MVC.Models.ProdutoViewModel>
+@model PagedViewModel<ProdutoViewModel>
 
 @{
     ViewData["Title"] = "Todos os produtos";
@@ -15,7 +15,7 @@
         <div class="container" style=" padding-top: 20px">
             <div class="row">
                 @{
-                    foreach (var produto in Model.Where(p=>p.Ativo).OrderBy(p=>p.Nome))
+                    foreach (var produto in Model.List.Where(p => p.Ativo).OrderBy(p => p.Nome))
                     {
                         <div class="col-md-3">
                             <div href="#" class="card card-product-grid">
@@ -28,7 +28,7 @@
                                     </a>
 
                                     <small class="card-text">
-                                        @this.MensagemEstoque(produto.QuantidadeEstoque)<br/><br/>
+                                        @this.MensagemEstoque(produto.QuantidadeEstoque)<br /><br />
                                         @produto.Descricao
                                     </small>
                                 </figcaption>
@@ -40,6 +40,53 @@
                     }
                 }
             </div>
+
+            <nav>
+                <ul class="pagination justify-content-center">
+                    @{
+                        if (@Model.PageIndex < 2)
+                        {
+                            <li class="page-item disabled">
+                                <span class="page-link">Anterior</span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-action="Index" asp-route-ps="@Model.PageSize" asp-route-page="@(Model.PageIndex - 1)" asp-route-q="@Model.Query">Anterior</a>
+                            </li>
+                        }
+                        for (var i = 1; i < Model.TotalPages + 1; i++)
+                        {
+                            if (i == Model.PageIndex)
+                            {
+                                <li class="page-item active">
+                                    <span class="page-link">@i</span>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" asp-action="Index" asp-route-ps="@Model.PageSize" asp-route-page="@i" asp-route-q="@Model.Query">@i</a>
+                                </li>
+                            }
+                        }
+                        if (@Model.PageIndex >= Model.TotalPages)
+                        {
+                            <li class="page-item disabled">
+                                <span class="page-link">Próxima</span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-action="Index" asp-route-ps="@Model.PageSize" asp-route-page="@(Model.PageIndex + 1)" asp-route-q="@Model.Query">Próxima</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </nav>
+
         </div>
     </div>
 </section>
