@@ -1,4 +1,5 @@
-﻿using Gouro.WebApi.Core.Identidade;
+﻿using Gouro.Identidade.API.Services;
+using Gouro.WebApi.Core.Identidade;
 using Gouro.WebApi.Core.Usuario;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,8 @@ namespace Gouro.Identidade.API.Configuration
         public static IServiceCollection AddApiConfiguration(this IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<AuthenticationService>();
 
             services.AddScoped<IAspNetUser, AspNetUser>();
 
