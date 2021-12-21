@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Gouro.WebApi.Core.Identidade;
 using Gouro.Carrinho.API.Data;
+using Gouro.Carrinho.API.Services.gRPC;
 
 namespace Gouro.Carrinho.API.Configuration
 {
@@ -17,6 +18,8 @@ namespace Gouro.Carrinho.API.Configuration
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
+
+            services.AddGrpc();
 
             services.AddCors(options =>
             {
@@ -39,6 +42,7 @@ namespace Gouro.Carrinho.API.Configuration
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGrpcService<CarrinhoGrpcService>().RequireCors("Total");
             });
         }
     }
