@@ -17,7 +17,7 @@ namespace Gouro.Carrinho.API.Services.gRPC
         private readonly IAspNetUser _user;
         private readonly CarrinhoContext _context;
 
-        public CarrinhoGrpcService(ILogger<CarrinhoGrpcService> logger, IAspNetUser user, CarrinhoContext context)
+        public CarrinhoGrpcService( ILogger<CarrinhoGrpcService> logger, IAspNetUser user, CarrinhoContext context)
         {
             _logger = logger;
             _user = user;

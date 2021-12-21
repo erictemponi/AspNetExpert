@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Gouro.WebApp.MVC.Models;
 using Gouro.WebApp.MVC.Services;
 
-
 namespace Gouro.WebApp.MVC.Controllers
 {
     [Authorize]
