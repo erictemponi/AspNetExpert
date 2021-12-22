@@ -7,8 +7,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["src/services/Gouro.Pedidos.API/Gouro.Pedidos.API.csproj", "src/services/Gouro.Pedidos.API/"]
-RUN dotnet restore "src/services/Gouro.Pedidos.API/Gouro.Pedidos.API.csproj"
+COPY ["src/services/Gouro.Pedido.API/Gouro.Pedidos.API.csproj", "src/services/Gouro.Pedidos.API/"]
+RUN dotnet restore "src/services/Gouro.Pedido.API/Gouro.Pedidos.API.csproj"
 COPY . .
 WORKDIR "/src/src/services/Gouro.Pedidos.API"
 RUN dotnet build "Gouro.Pedidos.API.csproj" -c Release -o /app/build
