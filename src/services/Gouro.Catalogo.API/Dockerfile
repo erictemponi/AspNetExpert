@@ -7,10 +7,13 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["src/services/Gouro.Catalogo.API/Gouro.Catalogo.API.csproj", "src/services/Gouro.Catalogo.API/"]
-RUN dotnet restore "src/services/Gouro.Catalogo.API/Gouro.Catalogo.API.csproj"
+COPY ["./services/Gouro.Catalogo.API/Gouro.Catalogo.API.csproj", "services/Gouro.Catalogo.API/"]
+COPY ["./building blocks/Gouro.Core/Gouro.Core.csproj", "building blocks/Gouro.WebAPI.Core/"]
+COPY ["./building blocks/Gouro.WebApi.Core/Gouro.WebApi.Core.csproj", "building blocks/Gouro.WebAPI.Core/"]
+COPY ["./building blocks/Gouro.MessageBus/Gouro.MessageBus.csproj", "building blocks/Gouro.MessageBus/"]
+RUN dotnet restore "services/Gouro.Catalogo.API/Gouro.Catalogo.API.csproj"
 COPY . .
-WORKDIR "/src/src/services/Gouro.Catalogo.API"
+WORKDIR "services/Gouro.Catalogo.API"
 RUN dotnet build "Gouro.Catalogo.API.csproj" -c Release -o /app/build
 
 FROM build AS publish

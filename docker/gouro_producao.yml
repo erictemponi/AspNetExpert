@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+
+    rabbitmq:
+        image: rabbitmq:3-management
+        container_name: rabbit_gouro
+        environment: 
+            RABBITMQ_DEFAULT_USER: "gouro"
+            RABBITMQ_DEFAULT_PASS: "gouro"
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+    
+    web-mvc:
+        image: gouro-web-mvc-ecommerce:latest
+        container_name: gouro-web-mvc-ecommerce
+        build:
+            context: ../src
+            dockerfile: ./web/Gouro.WebApp.MVC/Dockerfile
+        ports:
+            - "5001:5001"
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_URLS=http://*:5001
+        depends_on:
+            - api-catalogo
+            
+    
+    api-catalogo:
+        image: gouro-api-catalogo:latest
+        container_name: gouro-api-catalogo
+        build:
+            context: ../src
+            dockerfile: ./services/Gouro.Catalogo.API/Dockerfile
+        environment: 
+            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_URLS=http://*:5301
+        depends_on:
+            - rabbitmq
