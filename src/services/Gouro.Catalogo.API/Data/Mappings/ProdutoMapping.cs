@@ -22,6 +22,9 @@ namespace Gouro.Catalogo.API.Data.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(250)");
 
+            builder.Property(c => c.Valor)
+                .HasColumnType("decimal(10,2)");
+
             builder.ToTable("Produtos");
         }
     }

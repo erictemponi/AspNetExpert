@@ -41,11 +41,25 @@ namespace Gouro.Carrinho.API.Data
                         .HasColumnName("TipoDesconto");
 
                     v.Property(vc => vc.Percentual)
-                        .HasColumnName("Percentual");
+                        .HasColumnName("Percentual")
+                        .HasColumnType("decimal(10,2)");
 
                     v.Property(vc => vc.ValorDesconto)
-                        .HasColumnName("ValorDesconto");
+                        .HasColumnName("ValorDesconto")
+                        .HasColumnType("decimal(10,2)");
                 });
+
+            modelBuilder.Entity<CarrinhoCliente>()
+                .Property(p => p.Desconto)
+                .HasColumnType("decimal(10,2)");
+
+            modelBuilder.Entity<CarrinhoCliente>()
+                .Property(p => p.ValorTotal)
+                .HasColumnType("decimal(10,2)");
+
+            modelBuilder.Entity<CarrinhoItem>()
+                .Property(p => p.Valor)
+                .HasColumnType("decimal(10,2)");
 
             modelBuilder.Entity<CarrinhoCliente>()
                 .HasMany(c => c.Itens)

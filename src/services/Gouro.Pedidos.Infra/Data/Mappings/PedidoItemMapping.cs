@@ -14,6 +14,9 @@ namespace Gouro.Pedidos.Infra.Data.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(250)");
 
+            builder.Property(c => c.ValorUnitario)
+                .HasColumnType("decimal(10,2)");
+
             // 1 : N => Pedido : Pagamento
             builder.HasOne(c => c.Pedido)
                 .WithMany(c => c.PedidoItens);

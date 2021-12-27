@@ -34,6 +34,12 @@ namespace Gouro.Pedidos.Infra.Data.Mappings
                     .HasColumnName("Estado");
             });
 
+            builder.Property(c => c.Desconto)
+                .HasColumnType("decimal(10,2)");
+
+            builder.Property(c => c.ValorTotal)
+                .HasColumnType("decimal(10,2)");
+
             builder.Property(c => c.Codigo)
                 .HasDefaultValueSql("NEXT VALUE FOR MinhaSequencia");
 
