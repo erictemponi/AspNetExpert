@@ -10,8 +10,7 @@ namespace Gouro.WebApp.MVC.Controllers
         private readonly IClienteService _clienteService;
         private readonly IComprasBffService _comprasBffService;
 
-        public PedidoController(IClienteService clienteService,
-            IComprasBffService comprasBffService)
+        public PedidoController(IClienteService clienteService, IComprasBffService comprasBffService)
         {
             _clienteService = clienteService;
             _comprasBffService = comprasBffService;
