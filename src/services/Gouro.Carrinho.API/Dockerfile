@@ -7,10 +7,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["src/services/Gouro.Carrinho.API/Gouro.Carrinho.API.csproj", "src/services/Gouro.Carrinho.API/"]
-RUN dotnet restore "src/services/Gouro.Carrinho.API/Gouro.Carrinho.API.csproj"
+COPY ["./services/Gouro.Carrinho.API/Gouro.Carrinho.API.csproj", "services/Gouro.Carrinho.API/"]
+COPY ["./building blocks/Gouro.Core/Gouro.Core.csproj", "building blocks/Gouro.WebApi.Core/"]
+COPY ["./building blocks/Gouro.WebApi.Core/Gouro.WebApi.Core.csproj", "building blocks/Gouro.WebApi.Core/"]
+COPY ["./building blocks/Gouro.MessageBus/Gouro.MessageBus.csproj", "building blocks/Gouro.MessageBus/"]
+
+RUN dotnet restore "services/Gouro.Carrinho.API/Gouro.Carrinho.API.csproj"
 COPY . .
-WORKDIR "/src/src/services/Gouro.Carrinho.API"
+WORKDIR "services/Gouro.Carrinho.API"
 RUN dotnet build "Gouro.Carrinho.API.csproj" -c Release -o /app/build
 
 FROM build AS publish

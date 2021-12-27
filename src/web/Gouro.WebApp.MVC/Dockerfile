@@ -8,8 +8,9 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
 COPY ["./web/Gouro.WebApp.MVC/Gouro.WebApp.MVC.csproj", "web/Gouro.WebApp.MVC/"]
-COPY ["./building blocks/Gouro.Core/Gouro.Core.csproj", "building blocks/Gouro.WebAPI.Core/"]
-COPY ["./building blocks/Gouro.WebApi.Core/Gouro.WebApi.Core.csproj", "building blocks/Gouro.WebAPI.Core/"]
+COPY ["./building blocks/Gouro.Core/Gouro.Core.csproj", "building blocks/Gouro.WebApi.Core/"]
+COPY ["./building blocks/Gouro.WebApi.Core/Gouro.WebApi.Core.csproj", "building blocks/Gouro.WebApi.Core/"]
+
 RUN dotnet restore "web/Gouro.WebApp.MVC/Gouro.WebApp.MVC.csproj"
 COPY . .
 WORKDIR "web/Gouro.WebApp.MVC"

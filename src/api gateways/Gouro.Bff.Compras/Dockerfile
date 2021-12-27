@@ -7,10 +7,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["src/api gateways/Gouro.Bff.Compras/Gouro.Bff.Compras.csproj", "src/api gateways/Gouro.Bff.Compras/"]
-RUN dotnet restore "src/api gateways/Gouro.Bff.Compras/Gouro.Bff.Compras.csproj"
+COPY ["./api gateways/Gouro.Bff.Compras/Gouro.Bff.Compras.csproj", "api gateways/Gouro.Bff.Compras/"]
+COPY ["./building blocks/Gouro.Core/Gouro.Core.csproj", "building blocks/Gouro.WebApi.Core/"]
+COPY ["./building blocks/Gouro.WebApi.Core/Gouro.WebApi.Core.csproj", "building blocks/Gouro.WebApi.Core/"]
+COPY ["./building blocks/Gouro.MessageBus/Gouro.MessageBus.csproj", "building blocks/Gouro.MessageBus/"]
+
+RUN dotnet restore "api gateways/Gouro.Bff.Compras/Gouro.Bff.Compras.csproj"
 COPY . .
-WORKDIR "/src/src/api gateways/Gouro.Bff.Compras"
+WORKDIR "api gateways/Gouro.Bff.Compras"
 RUN dotnet build "Gouro.Bff.Compras.csproj" -c Release -o /app/build
 
 FROM build AS publish

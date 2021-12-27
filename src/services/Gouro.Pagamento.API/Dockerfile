@@ -7,10 +7,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["src/services/Gouro.Pagamento.API/Gouro.Pagamentos.API.csproj", "src/services/Gouro.Pagamentos.API/"]
-RUN dotnet restore "src/services/Gouro.Pagamento.API/Gouro.Pagamentos.API.csproj"
+COPY ["./services/Gouro.Pagamento.API/Gouro.Pagamentos.API.csproj", "services/Gouro.Pagamentos.API/"]
+COPY ["./building blocks/Gouro.Core/Gouro.Core.csproj", "building blocks/Gouro.WebApi.Core/"]
+COPY ["./building blocks/Gouro.WebApi.Core/Gouro.WebApi.Core.csproj", "building blocks/Gouro.WebApi.Core/"]
+COPY ["./building blocks/Gouro.MessageBus/Gouro.MessageBus.csproj", "building blocks/Gouro.MessageBus/"]
+
+RUN dotnet restore "services/Gouro.Pagamento.API/Gouro.Pagamentos.API.csproj"
 COPY . .
-WORKDIR "/src/src/services/Gouro.Pagamentos.API"
+WORKDIR "services/Gouro.Pagamentos.API"
 RUN dotnet build "Gouro.Pagamentos.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
