@@ -118,7 +118,7 @@ services:
             - api-identidade
             - api-carrinho
             - api-pagamento
-            - sql-pedido
+            - api-pedido
             
     api-pagamento:
         image: gouro-api-pagamento:latest
