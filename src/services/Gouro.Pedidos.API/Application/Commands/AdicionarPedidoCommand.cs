@@ -47,6 +47,7 @@ namespace Gouro.Pedidos.API.Application.Commands
 
                 RuleFor(c => c.ValorTotal)
                     .GreaterThan(0)
+                    .When(f => f.VoucherUtilizado == false) // pode usar cupom para zerar a compra
                     .WithMessage("Valor do pedido inválido");
 
                 RuleFor(c => c.NumeroCartao)
