@@ -106,6 +106,15 @@ namespace Gouro.Bff.Compras.Controllers
             return CustomResponse(resposta);
         }
 
+        [HttpDelete]
+        [Route("compras/carrinho/remover-voucher")]
+        public async Task<IActionResult> RemoverVoucher()
+        {
+            var resposta = await _carrinhoService.RemoverVoucherCarrinho();
+
+            return CustomResponse(resposta);
+        }
+
         private async Task ValidarItemCarrinho(ItemProdutoDTO produto, int quantidade, bool adicionarProduto = false)
         {
             if (produto == null) AdicionarErroProcessamento("Produto inexistente!");

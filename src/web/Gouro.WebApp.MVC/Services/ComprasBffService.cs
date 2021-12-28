@@ -18,6 +18,7 @@ namespace Gouro.WebApp.MVC.Services
         Task<ResponseResult> AtualizarItemCarrinho(Guid produtoId, ItemCarrinhoViewModel carrinho);
         Task<ResponseResult> RemoverItemCarrinho(Guid produtoId);
         Task<ResponseResult> AplicarVoucherCarrinho(string voucher);
+        Task<ResponseResult> RemoverVoucherCarrinho();
 
         // Pedido
         Task<ResponseResult> FinalizarPedido(PedidoTransacaoViewModel pedidoTransacao);
@@ -87,6 +88,15 @@ namespace Gouro.WebApp.MVC.Services
             var itemContent = ObterConteudo(voucher);
 
             var response = await _httpClient.PostAsync("/compras/carrinho/aplicar-voucher/", itemContent);
+
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
+
+            return RetornoOk();
+        }
+
+        public async Task<ResponseResult> RemoverVoucherCarrinho()
+        {
+            var response = await _httpClient.DeleteAsync("/compras/carrinho/remover-voucher/");
 
             if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 

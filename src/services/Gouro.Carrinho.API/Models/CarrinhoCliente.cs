@@ -36,6 +36,13 @@ namespace Gouro.Carrinho.API.Models
             CalcularValorCarrinho();
         }
 
+        public void RemoverVoucher()
+        {
+            Voucher = null;
+            VoucherUtilizado = false;
+            CalcularValorCarrinho();
+        }
+
         internal void CalcularValorCarrinho()
         {
             ValorTotal = Itens.Sum(p => p.CalcularValor());

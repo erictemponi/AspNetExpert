@@ -15,6 +15,7 @@ namespace Gouro.Bff.Compras.Services
         Task<ResponseResult> AtualizarItemCarrinho(Guid produtoId, ItemCarrinhoDTO carrinho);
         Task<ResponseResult> RemoverItemCarrinho(Guid produtoId);
         Task<ResponseResult> AplicarVoucherCarrinho(VoucherDTO voucher);
+        Task<ResponseResult> RemoverVoucherCarrinho();
     }
 
     public class CarrinhoService : Service, ICarrinhoService
@@ -72,6 +73,15 @@ namespace Gouro.Bff.Compras.Services
             var itemContent = ObterConteudo(voucher);
 
             var response = await _httpClient.PostAsync("/carrinho/aplicar-voucher/", itemContent);
+
+            if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
+
+            return RetornoOk();
+        }
+
+        public async Task<ResponseResult> RemoverVoucherCarrinho()
+        {
+            var response = await _httpClient.DeleteAsync("/carrinho/remover-voucher/");
 
             if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 

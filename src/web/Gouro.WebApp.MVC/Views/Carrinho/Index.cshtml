@@ -51,27 +51,27 @@
                                                     </div>
                                                 </td>
                                                 <form method="post" asp-controller="Carrinho" asp-action="AtualizarItemCarrinho">
-                                                    <td>
+                                                <td>
 
-                                                        <input type="hidden" id="ProdutoId" name="ProdutoId" value="@item.ProdutoId" />
+                                                    <input type="hidden" id="ProdutoId" name="ProdutoId" value="@item.ProdutoId" />
 
-                                                        <div class="text-left">
-                                                            <select id="Quantidade" name="Quantidade" style="width: 80px" class="form-control">
+                                                    <div class="text-left">
+                                                        <select id="Quantidade" name="Quantidade" style="width: 80px" class="form-control">
                                                                 @{
                                                                     @Html.Raw(this.SelectOptionsPorQuantidade(5, item.Quantidade))
                                                                 }
-                                                            </select>
-                                                        </div>
+                                                        </select>
+                                                    </div>
 
 
-                                                    </td>
-                                                    <td>
-                                                        <div class="text-right">
-                                                            <button type="submit" class="btn btn-success">
-                                                                <i class="fas fa-sync"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
+                                                </td>
+                                                <td>
+                                                    <div class="text-right">
+                                                        <button type="submit" class="btn btn-success">
+                                                            <i class="fas fa-sync"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
                                                 </form>
                                                 <td>
                                                     <form method="post" asp-controller="Carrinho" asp-action="RemoverItemCarrinho">
@@ -109,7 +109,7 @@
                                         <label>Possui um cupom?</label>
 
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="VoucherCodigo" id="VoucherCodigo" value="@Model.Voucher?.Codigo" placeholder="Cupom de Desconto">
+                                            <input type="text" class="form-control" name="VoucherCodigo" id="VoucherCodigo" value="@(Model.VoucherUtilizado ? Model.Voucher?.Codigo : "")" placeholder="Cupom de Desconto">
                                             <span class="input-group-append">
                                                 <button type="submit" class="btn btn-primary">Aplicar</button>
                                             </span>
@@ -140,6 +140,17 @@
                                     </dd>
                                 </dl>
                                 <hr>
+                                @{
+                                    if (Model.VoucherUtilizado)
+                                    {
+                                        <form asp-action="RemoverVoucher">
+                                            <div align="center">
+                                                <button type="submit" class="btn btn-instagram">Remover cupom</button>
+                                            </div>
+                                        </form>
+                                        <hr>
+                                    }
+                                }
                                 <p class="text-center mb-3">
                                     <img src="~/images/misc/payments.png" height="26">
                                 </p>

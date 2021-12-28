@@ -67,5 +67,16 @@ namespace Gouro.WebApp.MVC.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        [Route("carrinho/remover-voucher")]
+        public async Task<IActionResult> RemoverVoucher()
+        {
+            var resposta = await _comprasBffService.RemoverVoucherCarrinho();
+
+            if (ResponsePossuiErros(resposta)) return View("Index", await _comprasBffService.ObterCarrinho());
+
+            return RedirectToAction("Index");
+        }
     }
 }
