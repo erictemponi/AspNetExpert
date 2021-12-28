@@ -12,6 +12,9 @@ namespace Gouro.Pagamentos.API.Data.Mappings
 
             builder.Ignore(c => c.CartaoCredito);
 
+            builder.Property(c => c.Valor)
+                .HasColumnType("decimal(10,2)");
+
             // 1 : N => Pagamento : Transacao
             builder.HasMany(c => c.Transacoes)
                    .WithOne(c => c.Pagamento)
