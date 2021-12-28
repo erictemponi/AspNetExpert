@@ -24,7 +24,7 @@ namespace Gouro.Bff.Compras.Models
         public string VoucherCodigo { get; set; }
         public bool VoucherUtilizado { get; set; }
 
-        public List<ItemCarrinhoDTO> PedidoItems { get; set; }
+        public List<ItemCarrinhoDTO> PedidoItens { get; set; }
 
         #endregion
 

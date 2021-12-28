@@ -123,7 +123,7 @@ namespace Gouro.Bff.Compras.Controllers
             pedido.VoucherUtilizado = carrinho.VoucherUtilizado;
             pedido.ValorTotal = carrinho.ValorTotal;
             pedido.Desconto = carrinho.Desconto;
-            pedido.PedidoItems = carrinho.Itens;
+            pedido.PedidoItens = carrinho.Itens;
 
             pedido.Endereco = endereco;
         }
