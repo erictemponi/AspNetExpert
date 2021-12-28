@@ -21,7 +21,7 @@ namespace Gouro.WebApp.MVC.Models
         public decimal Desconto { get; set; }
         public bool VoucherUtilizado { get; set; }
 
-        public List<ItemPedidoViewModel> PedidoItems { get; set; } = new List<ItemPedidoViewModel>();
+        public List<ItemPedidoViewModel> PedidoItens { get; set; } = new List<ItemPedidoViewModel>();
 
         #endregion
 
